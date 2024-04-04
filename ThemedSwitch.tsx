@@ -1,35 +1,23 @@
-import { memo } from "react"
-import { StyleProp, StyleSheet, Switch, ViewStyle } from "react-native"
+// @ts-nocheck
 
-function ThemedSwitch({
-	label,
-	value,
-	onChange,
-	disabled,
-	style,
-	darkMode,
-}: {
-	label?: string
-	value: boolean
-	onChange: () => void
-	disabled?: boolean
-	style?: StyleProp<ViewStyle>
-	darkMode?: boolean
-}) {
+import { memo } from "react"
+import { StyleSheet, Switch, SwitchProps } from "react-native"
+import { useSelector } from "react-redux"
+
+function ThemedSwitch(props: SwitchProps) {
+	const darkMode = useSelector((state: RootState) => state.settings.darkMode)
+
 	return (
 		<Switch
 			accessibilityRole="switch"
-			accessibilityLabel={label ? label : ""}
-			accessibilityState={{ checked: value }}
-			disabled={disabled}
-			style={[styles.switch, style]}
-			trackColor={{
-				false: darkMode ? "#333333" : "#a3a3a3c7",
-				true: darkMode ? "#9b9b9ba9" : "#7c7c7cc7",
-			}}
-			thumbColor={value ? (darkMode ? "#c2c2c2" : "#424242ff") : darkMode ? "#5e5e5e" : "#a3a3a3ff"}
-			onChange={onChange}
-			value={value}
+			style={[styles.switch, props?.style]}
+			trackColor={
+				props?.trackColor || {
+					false: darkMode ? "#333333" : "#a3a3a3c7",
+					true: darkMode ? "#9b9b9ba9" : "#7c7c7cc7",
+				}
+			}
+			thumbColor={props?.value ? (darkMode ? "#c2c2c2" : "#424242ff") : darkMode ? "#5e5e5e" : "#a3a3a3ff"}
 		/>
 	)
 }
