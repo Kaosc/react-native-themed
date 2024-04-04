@@ -9,8 +9,8 @@ function ThemedActivityIndicator(props: ActivityIndicatorProps) {
 
 	return (
 		<ActivityIndicator
-			color={props?.color ? props.color : darkMode ? "#fff" : "#000"}
 			{...props}
+			color={props?.color ? props.color : darkMode ? "#fff" : "#000"}
 		/>
 	)
 }

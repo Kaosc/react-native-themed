@@ -31,6 +31,7 @@ function ThemedIcon(props: ThemedIconProps) {
 
 	return (
 		<IconComponent
+			{...props}
 			name={props?.name}
 			size={props?.size}
 			style={[

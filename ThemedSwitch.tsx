@@ -9,6 +9,7 @@ function ThemedSwitch(props: SwitchProps) {
 
 	return (
 		<Switch
+			{...props}
 			accessibilityRole="switch"
 			style={[styles.switch, props?.style]}
 			trackColor={
